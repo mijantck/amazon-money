@@ -11,7 +11,7 @@ class CoinTransaction extends Model
 
     protected $fillable = [
         "user_id",
-        "coin",
+        "amount",
         "info"
     ];
 }
