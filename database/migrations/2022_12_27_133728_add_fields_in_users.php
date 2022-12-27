@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('visit_web_site_links', function (Blueprint $table) {
-            //
-            $table->string("details", 500)->nullable();
-            $table->string("type", 50)->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger("coin")->default(0);
+            $table->string("referral_code", 20)->nullable();
         });
     }
 
@@ -27,10 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('visit_web_site_links', function (Blueprint $table) {
-            //
-            $table->dropColumn("details");
-            $table->dropColumn("type");
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn("coin");
+            $table->dropColumn("referral_code");
         });
     }
 };

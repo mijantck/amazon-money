@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('visit_web_site_links', function (Blueprint $table) {
-            //
-            $table->string("details", 500)->nullable();
-            $table->string("type", 50)->nullable();
+        Schema::create('coin_transactions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("user_id");
+            $table->bigInteger("amount")->default(0);
+            $table->string("info")->default("")->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,10 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('visit_web_site_links', function (Blueprint $table) {
-            //
-            $table->dropColumn("details");
-            $table->dropColumn("type");
-        });
+        Schema::dropIfExists('coin_transactions');
     }
 };

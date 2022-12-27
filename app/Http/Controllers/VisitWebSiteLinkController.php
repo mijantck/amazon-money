@@ -13,6 +13,7 @@ class VisitWebSiteLinkController extends Controller
         $link->name =$request->get("name");
         $link->url = $request->get("url");
         $link->image =$request->get("image");
+        $link->type =$request->get("type");
         $link->coin = $request->get("coin");
         $link->details = $request->get("details");
         $link->save();
@@ -20,8 +21,8 @@ class VisitWebSiteLinkController extends Controller
     }
 
 
-    public function getLinks(){
-        $links = VisitWebSiteLink::query()->get();
+    public function getLinks(Request $request){
+        $links = VisitWebSiteLink::query()->where('type', $request->get('type'))->get();
         return response()->json($links);
 
     }
@@ -33,6 +34,7 @@ class VisitWebSiteLinkController extends Controller
         $visitWebSiteLink->name =$request->get("name");
         $visitWebSiteLink->url = $request->get("url");
         $visitWebSiteLink->image =$request->get("image");
+        $visitWebSiteLink->type =$request->get("type");
         $visitWebSiteLink->coin = $request->get("coin");
         $visitWebSiteLink->details = $request->get("details");
         $visitWebSiteLink->save();
