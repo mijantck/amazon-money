@@ -17,7 +17,7 @@ class CoinController extends Controller
 
         //add coin transaction
         $coinTransaction = $request->user()->coinTransactions()->create([
-            "amount" => $request->get("coin"),
+            "amount" => $request->get("amount"),
             "info" => $request->get("info"),
         ]);
 
