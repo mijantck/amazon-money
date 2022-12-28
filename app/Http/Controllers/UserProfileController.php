@@ -34,7 +34,10 @@ class UserProfileController extends Controller
 
         $user->save();
 
-        return response()->json(["message" => "User registered successfully"], 200);
+        //create token
+        $token = $user->createToken("token")->plainTextToken;
+
+        return response()->json(["message" => "User registered successfully","user" => $user,"token"=>$token], 200);
     }
 
     public function login(Request $request)

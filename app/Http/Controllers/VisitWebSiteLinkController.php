@@ -22,6 +22,11 @@ class VisitWebSiteLinkController extends Controller
 
 
     public function getLinks(Request $request){
+        $request->validate([
+            "type" => "required"
+            ]
+        );
+
         $links = VisitWebSiteLink::query()->where('type', $request->get('type'))->get();
         return response()->json($links);
 
