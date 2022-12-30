@@ -15,6 +15,7 @@ class CoinController extends Controller
             "info" => "required|string",
         ]);
 
+
         //add coin transaction
         $coinTransaction = $request->user()->coinTransactions()->create([
             "amount" => $request->get("amount"),
@@ -24,7 +25,9 @@ class CoinController extends Controller
         $user = auth()->user();
         $user->coin = $user->coin + $request->get("amount");
         $user->save();
-        return response()->json(["message" => "Coin added successfully"], 200);
+
+        $currentCoin = $user->coin;
+        return response()->json(["massage" => "Coin added successfully","currentCoin" => $currentCoin], 200);
     }
 
     //get user coin

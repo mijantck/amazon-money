@@ -30,3 +30,9 @@ Route::get("/getLinks",[\App\Http\Controllers\VisitWebSiteLinkController::class,
 Route::get("/get-link/{visitWebSiteLink}",[\App\Http\Controllers\VisitWebSiteLinkController::class,"getLink"]);
 Route::put("/update-link/{visitWebSiteLink}",[\App\Http\Controllers\VisitWebSiteLinkController::class,"updateLink"]);
 
+//Gift Card routes
+Route::post("/create-gift-card",[\App\Http\Controllers\GiftCardController::class,"storeGift"])->middleware("auth:sanctum");
+
+//Payment req
+Route::post("/create-payment_req",[\App\Http\Controllers\PaymentRequstController::class,"createPaymentsRequest"])->middleware("auth:sanctum");
+
