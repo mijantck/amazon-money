@@ -114,8 +114,7 @@ class UserProfileController extends Controller
         return response()->json(["message" => "Logged out successfully"], 200);
     }
 
-    public function profile(Request $request)
-    {
+    public function profile(Request $request){
         //get user profile with rest api
         return response()->json(auth()->user(), 200);
     }
@@ -186,7 +185,7 @@ class UserProfileController extends Controller
             "info" => "Referral bonus for user " . $user->id,
         ]);
 
-        $referral_user->coins += 100;
+        $referral_user->coin += 100;
 
         $referral_user->save();
 
