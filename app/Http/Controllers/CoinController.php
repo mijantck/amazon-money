@@ -36,4 +36,30 @@ class CoinController extends Controller
         $user = auth()->user();
         return response()->json(["coin" => $user->coin,"user" =>$user], 200);
     }
+
+    public function addDailyReward(Request $request)
+    {
+        $user = auth()->user();
+
+        //check if user already got today reward
+        $todayReward = $user->coinTransactions()
+            ->whereDate("created_at", now())
+            ->where("info", "daily_reward")
+            ->first();
+
+
+        if($todayReward){
+            return response()->json(["message" => "You already got today reward"], 400);
+        }
+
+        $user->coinTransactions()->create([
+            "amount" => 100,
+            "info" => "daily_reward",
+        ]);
+
+        $user->coin = $user->coin + 100;
+        $user->save();
+
+        return response()->json(["massage" => "Daily Reward added successfully"], 200);
+    }
 }

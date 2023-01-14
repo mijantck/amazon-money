@@ -31,6 +31,7 @@ Route::post("set-referred-by", [\App\Http\Controllers\UserProfileController::cla
 //coin routes
 Route::get("get-coin", [\App\Http\Controllers\CoinController::class, "getCoin"])->middleware("auth:sanctum");
 Route::post("add-coin", [\App\Http\Controllers\CoinController::class, "addCoin"])->middleware("auth:sanctum");
+Route::post("add-daily-reward", [\App\Http\Controllers\CoinController::class, "addDailyReward"])->middleware("auth:sanctum");
 
 //Route::get("/create-link", [\App\Http\Controllers\VisitWebSiteLinkController::class,"create"]);
 Route::post("/create-link", [\App\Http\Controllers\VisitWebSiteLinkController::class,"store"]);
