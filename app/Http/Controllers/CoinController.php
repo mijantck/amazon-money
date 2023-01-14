@@ -34,6 +34,6 @@ class CoinController extends Controller
     public function getCoin()
     {
         $user = auth()->user();
-        return response()->json(["coin" => $user->coin], 200);
+        return response()->json(["coin" => $user->coin,"user" =>$user], 200);
     }
 }
