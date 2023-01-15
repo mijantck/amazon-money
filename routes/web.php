@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('login', [\App\Http\Controllers\Admin\LoginController::class, 'viewLogin'])->name('login');
+    Route::post('login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('login');
+
+    Route::group(['middleware' => ['auth:sanctum', 'admin']], function () {
+        Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    });
+
+});
